@@ -51,6 +51,6 @@ O código está organizado em arquivos separados para facilitar a manutenção e
 
 ## Equipe
 
-* <Nome do Integrante 1>
-* <Nome do Integrante 2>
-* <Nome do Integrante 3> (se houver)
+* Andrey Rebelatto
+* Erick Anderson
+* Eduardo Will
