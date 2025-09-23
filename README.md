@@ -1,6 +1,6 @@
 # <Nome do Projeto>
 
-Este é um projeto desenvolvido para a disciplina de **Algoritmos e Programação de Computadores (APC II)** da <Nome da Instituição de Ensino>, que simula um sistema de gerenciamento de informações. O objetivo é aplicar e integrar diversos conceitos fundamentais da programação em Python.
+Este é um projeto desenvolvido para a disciplina de **Algoritmos e Programação de Computadores (APC II)** da Univille, que simula um sistema de gerenciamento de informações. O objetivo é aplicar e integrar diversos conceitos fundamentais da programação em Python.
 
 ## Funcionalidades
 
