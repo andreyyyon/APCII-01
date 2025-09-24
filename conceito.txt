@@ -1,0 +1,37 @@
+> Classe Base: Veiculo
+    - Atributos: _placa, _modelo, _cor, _proprietario, e _hora_entrada.
+    - Métodos: Construtor (__init__), getters (@property) para todos os atributos, e um setter (@setter) para a cor.
+    - Função: Essa classe é a representação genérica de um veículo e a base para as subclasses.
+
+> Subclasse: Carro
+    - Herda de: Veiculo.
+    - Atributo Adicional: _portas.
+    - Função: Representa um carro, com um atributo específico que o diferencia de outros veículos.
+
+> Subclasse: Moto
+    - Herda de: Veiculo.
+    - Atributo Adicional: _cilindradas.
+    - Função: Representa uma moto, com um atributo específico para sua potência.
+
+
+
+> Conceito Lógico para Vagas e Locação
+    - O conceito mais simples e eficiente para este projeto é gerenciar as vagas de forma dinâmica usando uma lista Python. 
+      Não é necessário criar um sistema complexo de vagas numeradas; a lista em si representa o estado atual do estacionamento.
+    - Vagas: As vagas do estacionamento serão representadas por uma lista vazia no início do programa.
+    - Nome da Lista: vagas_ocupadas ou estacionamento.
+    - Localização: Esta lista será criada no arquivo _dados.py.
+
+> Locação (Entrada do Veículo):
+    - Quando um novo veículo entra, o usuário fornecerá seus dados (placa, modelo, etc.).
+    - Com esses dados, uma nova instância da classe Carro ou Moto será criada.
+    - Esta nova instância será adicionada à lista de vagas usando o método .append().
+
+> Liberação da Vaga (Saída do Veículo):
+    - Para a saída, o usuário informará a placa do veículo.
+    - O programa deverá percorrer a lista de vagas para encontrar o objeto que corresponde a essa placa.
+    - Após encontrar o veículo, ele será removido da lista usando o método .remove().
+
+> Vagas Disponíveis: A quantidade de vagas disponíveis pode ser calculada com base em uma capacidade máxima predefinida menos o 
+                     número de veículos na lista (len(lista)). Por exemplo, se a capacidade for 50, as vagas disponíveis seriam 
+                     50 - len(vagas_ocupadas).
