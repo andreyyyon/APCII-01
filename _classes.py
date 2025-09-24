@@ -9,7 +9,7 @@
     String Private - proprietario     Proprietário do veículo
 """
 
-class veiculo():
+class Veiculo():
     def __init__(self, placa, modelo, cor, proprietario):
         self._placa = placa
         self._modelo = modelo
