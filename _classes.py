@@ -1,5 +1,5 @@
 """
-    {Python} class veiculo
+    {Python} class Veiculo
     Classe principal para representar um veículo em um estacionamento.
 
     @propertys
@@ -47,3 +47,27 @@ class Veiculo():
     @proprietario.setter
     def proprietario(self, proprietario):
             self._proprietario = proprietario
+
+"""
+    {Python} class Carro
+    Classe principal para representar um veículo em um estacionamento.
+
+    @propertys
+    String Private - portas            Quantidade de portas do veículo carro
+"""
+
+class Carro(Veiculo):    
+    def __init__(self, placa, modelo, cor, proprietario, portas):
+        # Aqui você usa a função super() para chamar o construtor da classe base (Veiculo)
+        super().__init__(placa, modelo, cor, proprietario)
+        
+        # Agora você inicializa os atributos específicos de Carro
+        self._portas = portas
+
+    @property
+    def portas(self):
+        return self._portas
+
+    @portas.setter
+    def portas(self, novas_portas):
+        self._portas = novas_portas
