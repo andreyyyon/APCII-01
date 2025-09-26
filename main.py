@@ -4,31 +4,28 @@ opcao = -1
 
 while opcao != 0:
     print('''
-1 - Cadastrar veículo
-2 - Excluir cadastro de veículo
+1 - Registrar entrada
+2 - Registrar saída
 3 - Listar clientes
-4 - Registrar entrada
-5 - Registrar saída
-6 - Editar veículo
-7 - Consultar estadias de veículo
+4 - Editar veículo
+5 - Consultar estadias
+
+0 - Encerrar
+          
 ''')
     try:
         opcao = int(input("Sua opção: "))
     except:
         print("Digite um número inteiro equivalente a opção escolhida.")
     if opcao == 1:
-        cadastrar_veiculo()
+        registrar_entrada()
     elif opcao == 2:
-        excluir_veiculo()
+        registrar_saida()
     elif opcao == 3:
         listar_clientes()
     elif opcao == 4:
-        registrar_entrada()
-    elif opcao == 5:
-        registrar_saida()
-    elif opcao == 6:
         editar_veiculo()
-    elif opcao == 7:
+    elif opcao == 5:
         consultar_estadias()
     else:
         print("Opção inválida.")
