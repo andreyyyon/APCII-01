@@ -23,11 +23,12 @@ Este é um projeto desenvolvido para a disciplina de **Algoritmos e Programaçã
 | Definir     |        | 	                              |                    | 
 
 ## Classe Vaga
-| Propriedade | Tipo    | Descrição                                             | Visibilidade       |
-|-------------|---------|-------------------------------------------------------|--------------------|
-| id          | String  | Identificador primario da vaga		                |  Private           |
-| tipo        | String  | Tipo da vaga (C - Carro / M - Moto)		            |  Private           |
-| status      | Boolean | Status da vaga (True - Disponivel / False - Ocupada)  |  Private           |
+| Propriedade  | Tipo    | Descrição                                             | Visibilidade       |
+|--------------|---------|-------------------------------------------------------|--------------------|
+| id           | String  | Identificador primario da vaga		                 |  Private           |
+| tipo         | String  | Tipo da vaga (C - Carro / M - Moto)		             |  Private           |
+| status       | Boolean | Status da vaga (True - Disponivel / False - Ocupada)  |  Private           |
+| placaVeiculo | String  | Identificador estrangeiro do veículo que está na vaga |  Private           |
 
 ## Equipe
 
