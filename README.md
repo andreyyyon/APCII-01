@@ -10,25 +10,25 @@ Este é um projeto desenvolvido para a disciplina de **Algoritmos e Programaçã
 | placa       | String | Chave primaria do veículo		  |  Private           |
 | modelo      | String | Modelo  do veículo		          |  Private           |
 | cor         | String | Cor do veículo		              |  Private           |
-| proprietario| String | Proprietário do veículo		  |  Private           |
+| vaga        | String | Vaga ocupada pelo veículo		  |  Private           |
 
 ### Subclasse Carro
 | Propriedade | Tipo   | Descrição                        | Visibilidade       |
 |-------------|--------|----------------------------------|--------------------|
-| portas      | String | Quantidade de portas do carro	  |  Private           |
+| tamanho     | String | Porte do veículo (M ou G)	      |  Private           |
 
 ### Subclasse Moto
-| Propriedade | Tipo   | Descrição                        | Visibilidade       |
-|-------------|--------|----------------------------------|--------------------|
-| Definir     |        | 	                              |                    | 
+| Propriedade | Tipo    | Descrição                                       | Visibilidade       |
+|-------------|---------|-------------------------------------------------|--------------------|
+| eletrica    | Boolean | Moto é elétrica? (True - Sim / False - Não)     | Private            | 
 
-## Classe Vaga
+## Classe Estadia
 | Propriedade  | Tipo    | Descrição                                             | Visibilidade       |
 |--------------|---------|-------------------------------------------------------|--------------------|
-| id           | String  | Identificador primario da vaga		                 |  Private           |
-| tipo         | String  | Tipo da vaga (C - Carro / M - Moto)		             |  Private           |
-| status       | Boolean | Status da vaga (True - Disponivel / False - Ocupada)  |  Private           |
-| placaVeiculo | String  | Identificador estrangeiro do veículo que está na vaga |  Private           |
+| vaga         | String  | Vaga utilizada		                                 |  Private           |
+| placa        | Boolean | Placa do carro que utilizou a vaga                    |  Private           |
+| entrada      | String  | Data e hora da entrada                                |  Private           |
+| saida        | String  | Data e hora da saída                                  |  Private           |
 
 ## Equipe
 
