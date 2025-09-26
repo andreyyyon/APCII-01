@@ -1,0 +1,2 @@
+registro_entrada = []
+clientes = []
