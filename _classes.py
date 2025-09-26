@@ -3,18 +3,18 @@
     Classe principal para representar um veículo em um estacionamento.
 
     @propertys
-    String Private - placa            Chave primaria do veículo
-    String Private - modelo           Modelo  do veículo
-    String Private - cor              Cor do veículo
-    String Private - proprietario     Proprietário do veículo
+    String Private - placa      Chave primaria do veículo
+    String Private - modelo     Modelo  do veículo
+    String Private - cor        Cor do veículo
+    String Private - vaga       Vaga que o veículo está ocupando
 """
 
 class Veiculo():
-    def __init__(self, placa, modelo, cor, proprietario):
+    def __init__(self, placa, modelo, cor, vaga):
         self._placa = placa
         self._modelo = modelo
         self._cor = cor
-        self._proprietario = proprietario
+        self._vaga = vaga
     
     @property
     def placa(self):
@@ -41,93 +41,103 @@ class Veiculo():
             self._cor = cor
 
     @property
-    def proprietario(self):
-        return self._proprietario
+    def vaga(self):
+        return self._vaga
 
-    @proprietario.setter
-    def proprietario(self, proprietario):
-            self._proprietario = proprietario
+    @vaga.setter
+    def vaga(self, vaga):
+            self._vaga = vaga
 
 """
     {Python} class Carro
-    Subclasse que vai representar um carro.
+    Subclasse que representa um carro.
 
     @propertys
-    String Private - portas     Quantidade de portas do veículo carro
+    String Private - tamanho    Porte do veículo (M ou G)
 """
 
 class Carro(Veiculo):    
-    def __init__(self, placa, modelo, cor, proprietario, portas):
-        super().__init__(placa, modelo, cor, proprietario)
+    def __init__(self, placa, modelo, cor, vaga, tamanho):
+        super().__init__(placa, modelo, cor, vaga)
         
-        self._portas = portas
+        self._tamanho = tamanho
 
     @property
-    def portas(self):
-        return self._portas
+    def tamanho(self):
+        return self._tamanho
 
-    @portas.setter
-    def portas(self, novas_portas):
-        self._portas = novas_portas
+    @tamanho.setter
+    def tamanho(self, novo_tamanho):
+        self._tamanho = novo_tamanho
 
 """
     {Python} class Moto
-    Subclasse que vai representar uma moto.
+    Subclasse que representa uma moto.
 
     @propertys
+    String Boolean - eletrica   Moto é elétrica? (True - Sim / False - Não)
 """
 
 class Moto(Veiculo):    
-    def __init__(self, placa, modelo, cor, proprietario, x):
-        super().__init__(placa, modelo, cor, proprietario)
+    def __init__(self, placa, modelo, cor, vaga, eletrica):
+        super().__init__(placa, modelo, cor, vaga)
         
-        self._x = x
+        self._eletrica = eletrica
 
     @property
-    def x(self):
-        return self._x
+    def eletrica(self):
+        return self._eletrica
 
-    @x.setter
-    def portas(self, x):
-        self._x = x
+    @eletrica.setter
+    def eletrica(self, eletrica):
+        self._eletrica = eletrica
 
 """
-    {Python} class Vaga
-    Classe principal para representar uma vaga em um estacionamento.
+    {Python} class Estadia
+    Classe principal para representar as estadias em um estacionamento.
 
     @propertys
-    String Private - id         Identificador primario da vaga	
-    String Private - tipo       Tipo da vaga (C - Carro / M - Moto)		
-    String Private - status     Status da vaga (True - Disponivel / False - Ocupada)
+    String Private - vaga        Vaga utilizada	
+    String Private - placa       Placa do carro que utilizou a vaga		
+    String Private - entrada     Data e hora da entrada
+    String Private - saida       Data e hora da saida
 """
 
-class Vaga():
-    def __init__(self, id, tipo, status, placaVeiculo):
-        self._id = id
-        self._tipo = tipo
-        self._status = status
-        self._placaVeiculo = placaVeiculo
+class Estadia():
+    def __init__(self, vaga, placa, entrada, saida):
+        self._vaga = vaga
+        self._placa = placa
+        self._entrada = entrada
+        self._saida = saida
     
     @property
-    def id(self):
-        return self._id
+    def vaga(self):
+        return self._vaga
 
-    @id.setter
-    def id(self, id):
-            self._id = id
-
-    @property
-    def tipo(self):
-        return self._tipo
-
-    @tipo.setter
-    def tipo(self, tipo):
-            self._tipo = tipo
+    @vaga.setter
+    def vaga(self, vaga):
+            self._vaga = vaga
 
     @property
-    def status(self):
-        return self._status
+    def placa(self):
+        return self._placa
 
-    @status.setter
-    def status(self, status):
-            self._status = status
+    @placa.setter
+    def placa(self, placa):
+            self._placa = placa
+
+    @property
+    def entrada(self):
+        return self._entrada
+
+    @entrada.setter
+    def entrada(self, entrada):
+            self._entrada = entrada
+    
+    @property
+    def saida(self):
+        return self._saida
+
+    @entrada.setter
+    def saida(self, saida):
+            self._saida = saida
