@@ -102,10 +102,11 @@ class Moto(Veiculo):
 """
 
 class Vaga():
-    def __init__(self, id, tipo, status):
+    def __init__(self, id, tipo, status, placaVeiculo):
         self._id = id
         self._tipo = tipo
         self._status = status
+        self._placaVeiculo = placaVeiculo
     
     @property
     def id(self):
