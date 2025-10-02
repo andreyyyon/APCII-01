@@ -1,9 +1,9 @@
-from datetime import datetime
-import pytz
-from _classes import Veiculo, Carro, Moto, Estadia
-import _dados
 import os
 import platform
+import pytz
+import _dados
+from datetime import datetime
+from _classes import Carro, Moto, Estadia
 
 # # Funções
 
@@ -117,66 +117,65 @@ def registrar_saida():
             print(f"Erro: {e}")
 
 # Função para mostrar todos os veículos cadastrados no sistema     
-def listar_clientes(clientes):
+def listar_clientes():
+    clientes = _dados.clientes
     if not clientes:
         print("Nenhum veículo cadastrado ainda.")
         return
     
     print("Lista de clientes cadastrados")
-    for i, clientes in enumerate(clientes, start=1):
-        print(f"{i} - Placa: {clientes.placa}")
-        print(f"    - Modelo: {clientes.modelo}")
-        print(f"    - Cor: {clientes.cor}")
-        print(f"    - Vaga: {clientes.vaga}")
+    for i, cliente in enumerate(clientes, start=1):
+        print(f"{i} - Placa: {cliente.placa}")
+        print(f"    - Modelo: {cliente.modelo}")
+        print(f"    - Cor: {cliente.cor}")
+        print(f"    - Vaga: {cliente.vaga}")
 
-# Verifica se o objeto pertence a classe correta
-if isinstance(cliente, Carro):
-    print(f"    - Tipo: Carro")
-    print(f"    - Tamanho: {cliente.tamanho}")
+        # Verifica se o objeto pertence a classe correta
+        if isinstance(cliente, Carro):
+            print(f"    - Tipo: Carro")
+            print(f"    - Tamanho: {cliente.tamanho}")
 
-elif isinstance(cliente, Moto):
-    print(f"   Tipo: Moto")
-    print(f"   Motor: {'Elétrica' if cliente.eletrica else 'Combustão'}")
-    print("-"*40)
-    
-def editar_veiculos(clientes, veiculo):
-    if not clientes:
+        elif isinstance(cliente, Moto):
+            print(f"   Tipo: Moto")
+            print(f"   Motor: {'Elétrica' if cliente.eletrica else 'Combustão'}")
+            print("-"*40)
+        
+
+def editar_veiculos():
+    if not _dados.clientes:
         print(f"Nenhum veículo cadastrado ainda.")
         return
-
+    
     placa_buscar = input("Digite a placa do veículo que deseja editar: ")
 
     # Buscar o veículo
-    for cliente in clientes:
+    for cliente in  _dados.clientes:
         if cliente.placa == placa_buscar:
             print(f"\nEditando o veículo: {cliente.modelo} - Placa: {cliente.placa}")
 
-def consultar_estadias(estadias):
-    pass
-   
-      alterado = False
+    alterado = False
 
-      # Editar o modelo
-      novo_modelo = input(f"Digite o novo modelo (modelo atual: {cliente.modelo}): ").strip()
-      print("Ou digite ENTER para manter o modelo atual.")
-      if novo_modelo:
-          cliente.modelo = novo_modelo
-          alterado = True
+    # Editar o modelo
+    novo_modelo = input(f"Digite o novo modelo (modelo atual: {_dados.cliente.modelo}): ").strip()
+    print("Ou digite ENTER para manter o modelo atual.")
+    if novo_modelo:
+        _dados.cliente.modelo = novo_modelo
+        alterado = True
 
-      # Editar a cor
-      nova_cor = input(f"Digite a nova cor (cor atual: {cliente.cor}): ").strip()
-      print("Ou digite ENTER para manter a cor atual.")
-      if nova_cor:
-          cliente.cor = nova_cor
-          alterado = True
+    # Editar a cor
+    nova_cor = input(f"Digite a nova cor (cor atual: {_dados.cliente.cor}): ").strip()
+    print("Ou digite ENTER para manter a cor atual.")
+    if nova_cor:
+        _dados.cliente.cor = nova_cor
+        alterado = True
 
-      if alterado == True:
-          print("Veículo atualizado com sucesso!")
-      elif alterado == False:
-          print("Nenhuma alteração foi feita.")
-      return
+    if alterado == True:
+        print("Veículo atualizado com sucesso!")
+    elif alterado == False:
+        print("Nenhuma alteração foi feita.")
+        return
 
-  print("Veículo não encontrado.")
+    print("Veículo não encontrado.")
 
 def consultar_estadias():
     placa = str(input("Qual placa deseja consultar as estadias? "))
