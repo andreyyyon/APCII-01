@@ -1,11 +1,13 @@
-from _classes import Carro, Moto, cliente
+# from _classes import Carro, Moto, cliente
 
 from datetime import datetime
 import pytz
 from _classes import Veiculo, Carro, Moto, Estadia
 import _dados
+import os
+import platform
 
-# Funções
+# # Funções
 
 def registrar_entrada(clientes):
     try:
@@ -107,8 +109,8 @@ def registrar_saida(clientes):
         # Remover a vaga da instância da subclasse de Veiculo
             
         print("Não foi encontrada estadia em aberto para essa placa.")
-except TypeError as e:
-        print(f"Erro: {e}"
+    except TypeError as e:
+            print(f"Erro: {e}")
 
 # Função para mostrar todos os veículos cadastrados no sistema     
 def listar_clientes(clientes):
@@ -138,3 +140,12 @@ def editar_veiculos(clientes, veiculo):
 
 def consultar_estadias(estadias):
     pass
+    
+
+def limpar_terminal():
+    sistema_operacional = platform.system()
+    
+    if sistema_operacional == "Windows":
+        os.system('cls')
+    else:
+        os.system('clear')
