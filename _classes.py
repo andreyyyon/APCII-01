@@ -116,7 +116,7 @@ class Moto(Veiculo):
         super().__init__(placa, modelo, cor, vaga)
         
         self._validProp("eletrica", eletrica)
-        self._validTamanho("eletrica", eletrica)
+        self._validEletrica("eletrica", eletrica)
         self._eletrica = eletrica
 
     # Método generico para validação inicial das propriedades
@@ -131,7 +131,7 @@ class Moto(Veiculo):
     @eletrica.setter
     def eletrica(self, eletrica):
         self._validProp("eletrica", eletrica)
-        self._validTamanho("eletrica", eletrica)
+        self._validEletrica("eletrica", eletrica)
         self._eletrica = eletrica
 
 """
