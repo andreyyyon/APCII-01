@@ -149,7 +149,6 @@ class Estadia():
         self._validProp("vaga", vaga)        
         self._validProp("placa", placa)        
         self._validProp("entrada", entrada)        
-        self._validProp("saida", saida)        
 
         self._vaga = vaga
         self._placa = placa

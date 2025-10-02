@@ -19,12 +19,12 @@ def registrar_entrada():
         cor = str(input("Qual cor? ")).strip()
 
         # Definindo os atributos da subclasse
-        tipo_veiculo = str(input("Qual o tipo do veículo? [Carro/Moto] ")).strip().capitalize()
-        if tipo_veiculo != "Carro" and tipo_veiculo != "Moto":
+        tipo_veiculo = str(input("Qual o tipo do veículo? [Carro/Moto] ")).strip()[0].upper()
+        if tipo_veiculo != "C" and tipo_veiculo != "M":
             print("Tipo de veículo não atendido pelo estacionamento.")
-        elif tipo_veiculo == "Carro":
+        elif tipo_veiculo == "C":
             tam_carro = str(input("Qual o tamanho do carro? [M/G] ")).strip().upper()
-        elif tipo_veiculo == "Moto":
+        elif tipo_veiculo == "M":
             eletrica = str(input("A moto é elétrica? [S/N] ")).strip().upper()
             if eletrica == "S":
                 eletrica = True
@@ -34,7 +34,7 @@ def registrar_entrada():
                 print("Digite S ou N")
 
         # Definindo a vaga
-        if tipo_veiculo == "Carro":
+        if tipo_veiculo == "C":
             if tam_carro == "M":
                 for vagaPretendida in _dados.vagas:
                     if vagaPretendida[0] == "M":
@@ -46,7 +46,7 @@ def registrar_entrada():
                         vaga = vagaPretendida
                         _dados.vagas.remove(vagaPretendida)
 
-        elif tipo_veiculo == "Moto":
+        elif tipo_veiculo == "M":
             if eletrica == True:
                 for vagaPretendida in _dados.vagas:
                     if vagaPretendida[0] == "E":
@@ -141,7 +141,7 @@ def listar_clientes():
             print("-"*40)
         
 
-def editar_veiculos():
+def editar_veiculo():
     if not _dados.clientes:
         print(f"Nenhum veículo cadastrado ainda.")
         return

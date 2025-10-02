@@ -5,9 +5,8 @@ import _funcoes
 opcao = -1
 
 while opcao != 0:
-    _funcoes.limpar_terminal()
-    print(
-'''============ MENU ============
+    print('''
+============ MENU ============
 1 - Registrar entrada
 2 - Registrar saída
 3 - Listar clientes
@@ -21,6 +20,7 @@ while opcao != 0:
         opcao = int(input("Sua opção: "))
         _funcoes.limpar_terminal()
     except:
+        _funcoes.limpar_terminal()
         print("Digite um número inteiro equivalente a opção escolhida.")
     if opcao == 1:
         _funcoes.registrar_entrada()
