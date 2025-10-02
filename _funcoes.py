@@ -2,14 +2,21 @@ from _classes import Carro, Moto, cliente
 
 from datetime import datetime
 import pytz
+from _classes import Veiculo, Carro, Moto, Estadia
+import _dados
 
 # Funções
 
 def registrar_entrada(clientes):
     try:
+        # Atributo hora/data
         fuso_brasilia = pytz.timezone("America/Sao_Paulo")
-        placa = str(input("Digite a placa do veículo: ")) #id do cliente
         hora = datetime.now(fuso_brasilia)
+
+        # Definindo os atributos da classe Veiculo
+        placa = str(input("Digite a placa do veículo: ")) #id do cliente
+        modelo = str(input("Qual o modelo do veículo? ")).strip()
+        cor = str(input("Qual cor? ")).strip()
 
         # Definindo os atributos da subclasse
         tipo_veiculo = str(input("Qual o tipo do veículo? [Carro/Moto] ")).strip().capitalize()
@@ -26,14 +33,82 @@ def registrar_entrada(clientes):
             else:
                 print("Digite S ou N")
 
-        for clientesExistente in clientes:
+        # Definindo a vaga
+        if tipo_veiculo == "Carro":
+            if tam_carro == "M":
+                for vagaPretendida in _dados.vagas:
+                    if vagaPretendida[0] == "M":
+                        vaga = vagaPretendida
+                        _dados.vagas.remove(vagaPretendida)
+            elif tam_carro == "G":
+                for vagaPretendida in _dados.vagas:
+                    if vagaPretendida[0] == "G":
+                        vaga = vagaPretendida
+                        _dados.vagas.remove(vagaPretendida)
+
+        elif tipo_veiculo == "Moto":
+            if eletrica == True:
+                for vagaPretendida in _dados.vagas:
+                    if vagaPretendida[0] == "E":
+                        vaga = vagaPretendida
+                        _dados.vagas.remove(vagaPretendida)
+
+            elif eletrica == False:
+                for vagaPretendida in _dados.vagas:
+                    if vagaPretendida[0] == "C":
+                        vaga = vagaPretendida
+                        _dados.vagas.remove(vagaPretendida)
+                
+        # Verifico se o cliente ja existe na lista de clientes.
+        for clientesExistente in _dados.clientes:
             # se já existir o cliente, registra a entrada
             if placa == clientesExistente.placa:
                 print("Cadastro já existente, fazendo o registro da entrada...")
-                if tipo_veiculo == "Carro":
-                    objeto = 
-
+                estadiaNova = Estadia(placa, modelo, hora)
+                _dados.estadias.append(estadiaNova)
                 return
+        
+        # Caso não exista, vamos registrar o cliente e em seguida registrar a entrada.
+        try:
+            if tipo_veiculo == "Carro":
+                clienteNovo = Carro(placa, modelo, cor, vaga, tam_carro)
+                _dados.clientes.append(clienteNovo)
+            elif tipo_veiculo == "Moto":
+                clienteNovo = Moto(placa, modelo, cor, vaga, eletrica)
+                _dados.clientes.append(clienteNovo)
+        except ValueError as erro_validacao:
+            print(f"Erro: {erro_validacao}.")
+
+        estadiaNova = Estadia(placa, modelo, hora)
+        _dados.estadias.append(estadiaNova)
+        return
+    
+    except TypeError as e:
+        print(f"Erro: {e}")
+    
+def registrar_saida(clientes):
+    try:
+        # Atributo hora/data
+        fuso_brasilia = pytz.timezone("America/Sao_Paulo")
+        hora = datetime.now(fuso_brasilia)
+
+        # Atributo placa do veículo que está saindo
+        placa = str(input("Digite a placa do veículo que vai sair: ")).strip()
+
+        # Adicionar horário de saída na instância da classe Estadia que está na lista estadias.
+        for estadia in reversed(_dados.estadias):
+            if estadia.placa == placa and getattr(estadia, "hora_saida", None) is None:
+                estadia.saida = hora
+                print(f"Saída registrada para {placa} às {hora.strftime('%d/%m/%Y %H:%M:%S')}")
+                return
+            
+        # Adicionar a vaga novamente à lista vagas
+
+        # Remover a vaga da instância da subclasse de Veiculo
+            
+        print("Não foi encontrada estadia em aberto para essa placa.")
+except TypeError as e:
+        print(f"Erro: {e}"
 
 # Função para mostrar todos os veículos cadastrados no sistema     
 def listar_clientes(clientes):
@@ -74,7 +149,3 @@ def editar_veiculos(clientes, veiculo):
 
 def consultar_estadias(estadias):
     pass
-
-    except TypeError as e:
-        print(f"Erro: {e}")
-    
