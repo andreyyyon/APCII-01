@@ -68,7 +68,6 @@ class Veiculo():
 
     @vaga.setter
     def vaga(self, vaga):
-            self._validProp("vaga", vaga)
             self._vaga = vaga
 
 

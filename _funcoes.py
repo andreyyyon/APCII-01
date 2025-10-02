@@ -2,8 +2,10 @@ from datetime import datetime
 import pytz
 from _classes import Veiculo, Carro, Moto, Estadia
 import _dados
+import os
+import platform
 
-# Funções
+# # Funções
 
 def registrar_entrada():
     try:
@@ -149,29 +151,32 @@ def editar_veiculos(clientes, veiculo):
         if cliente.placa == placa_buscar:
             print(f"\nEditando o veículo: {cliente.modelo} - Placa: {cliente.placa}")
 
-            alterado = False
+def consultar_estadias(estadias):
+    pass
+   
+      alterado = False
 
-            # Editar o modelo
-            novo_modelo = input(f"Digite o novo modelo (modelo atual: {cliente.modelo}): ").strip()
-            print("Ou digite ENTER para manter o modelo atual.")
-            if novo_modelo:
-                cliente.modelo = novo_modelo
-                alterado = True
-            
-            # Editar a cor
-            nova_cor = input(f"Digite a nova cor (cor atual: {cliente.cor}): ").strip()
-            print("Ou digite ENTER para manter a cor atual.")
-            if nova_cor:
-                cliente.cor = nova_cor
-                alterado = True
+      # Editar o modelo
+      novo_modelo = input(f"Digite o novo modelo (modelo atual: {cliente.modelo}): ").strip()
+      print("Ou digite ENTER para manter o modelo atual.")
+      if novo_modelo:
+          cliente.modelo = novo_modelo
+          alterado = True
 
-            if alterado == True:
-                print("Veículo atualizado com sucesso!")
-            elif alterado == False:
-                print("Nenhuma alteração foi feita.")
-            return
+      # Editar a cor
+      nova_cor = input(f"Digite a nova cor (cor atual: {cliente.cor}): ").strip()
+      print("Ou digite ENTER para manter a cor atual.")
+      if nova_cor:
+          cliente.cor = nova_cor
+          alterado = True
 
-print("Veículo não encontrado.")
+      if alterado == True:
+          print("Veículo atualizado com sucesso!")
+      elif alterado == False:
+          print("Nenhuma alteração foi feita.")
+      return
+
+  print("Veículo não encontrado.")
 
 def consultar_estadias():
     placa = str(input("Qual placa deseja consultar as estadias? "))
@@ -180,3 +185,11 @@ def consultar_estadias():
                 print(f"Vaga: {estadia.vaga}")
                 print(f"Data/hora de entrada: {estadia.entrada}")
                 print(f"Data/hora de saída: {estadia.saida}")
+
+def limpar_terminal():
+    sistema_operacional = platform.system()
+    
+    if sistema_operacional == "Windows":
+        os.system('cls')
+    else:
+        os.system('clear')
