@@ -64,22 +64,22 @@ def registrar_entrada():
             # se já existir o cliente, registra a entrada
             if placa == clientesExistente.placa:
                 print("Cadastro já existente, fazendo o registro da entrada...")
-                estadiaNova = Estadia(placa, modelo, hora, None)
+                estadiaNova = Estadia(vaga, placa, hora, None)
                 _dados.estadias.append(estadiaNova)
                 pass
         
         # Caso não exista, vamos registrar o cliente e em seguida registrar a entrada.
         try:
-            if tipo_veiculo == "Carro":
+            if tipo_veiculo == "C":
                 clienteNovo = Carro(placa, modelo, cor, vaga, tam_carro)
                 _dados.clientes.append(clienteNovo)
-            elif tipo_veiculo == "Moto":
+            elif tipo_veiculo == "M":
                 clienteNovo = Moto(placa, modelo, cor, vaga, eletrica)
                 _dados.clientes.append(clienteNovo)
         except ValueError as erro_validacao:
             print(f"Erro: {erro_validacao}.")
 
-        estadiaNova = Estadia(placa, modelo, hora, None)
+        estadiaNova = Estadia(vaga, placa, hora, None)
         _dados.estadias.append(estadiaNova)
         print("Entrada registrada com sucesso.")
         return
