@@ -152,21 +152,22 @@ def editar_veiculos():
     for cliente in  _dados.clientes:
         if cliente.placa == placa_buscar:
             print(f"\nEditando o veículo: {cliente.modelo} - Placa: {cliente.placa}")
+            clienteTemp = cliente
 
     alterado = False
 
     # Editar o modelo
-    novo_modelo = input(f"Digite o novo modelo (modelo atual: {_dados.cliente.modelo}): ").strip()
+    novo_modelo = input(f"Digite o novo modelo (modelo atual: {clienteTemp.modelo}): ").strip()
     print("Ou digite ENTER para manter o modelo atual.")
     if novo_modelo:
-        _dados.cliente.modelo = novo_modelo
+        clienteTemp.modelo = novo_modelo
         alterado = True
 
     # Editar a cor
-    nova_cor = input(f"Digite a nova cor (cor atual: {_dados.cliente.cor}): ").strip()
+    nova_cor = input(f"Digite a nova cor (cor atual: {clienteTemp.cor}): ").strip()
     print("Ou digite ENTER para manter a cor atual.")
     if nova_cor:
-        _dados.cliente.cor = nova_cor
+        clienteTemp.cor = nova_cor
         alterado = True
 
     if alterado == True:
