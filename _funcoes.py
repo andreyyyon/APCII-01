@@ -67,18 +67,44 @@ def registrar_entrada(clientes):
                 return
         
         # Caso não exista, vamos registrar o cliente e em seguida registrar a entrada.
-        if tipo_veiculo == "Carro":
-            clienteNovo = Carro(placa, modelo, cor, vaga, tam_carro)
-            _dados.clientes.append(clienteNovo)
-        elif tipo_veiculo == "Moto":
-            clienteNovo = Moto(placa, modelo, cor, vaga, eletrica)
-            _dados.clientes.append(clienteNovo)
+        try:
+            if tipo_veiculo == "Carro":
+                clienteNovo = Carro(placa, modelo, cor, vaga, tam_carro)
+                _dados.clientes.append(clienteNovo)
+            elif tipo_veiculo == "Moto":
+                clienteNovo = Moto(placa, modelo, cor, vaga, eletrica)
+                _dados.clientes.append(clienteNovo)
+        except ValueError as erro_validacao:
+            print(f"Erro: {erro_validacao}.")
 
         estadiaNova = Estadia(placa, modelo, hora)
         _dados.estadias.append(estadiaNova)
         return
-
-
+    
     except TypeError as e:
         print(f"Erro: {e}")
     
+def registrar_saida(clientes):
+    try:
+        # Atributo hora/data
+        fuso_brasilia = pytz.timezone("America/Sao_Paulo")
+        hora = datetime.now(fuso_brasilia)
+
+        # Atributo placa do veículo que está saindo
+        placa = str(input("Digite a placa do veículo que vai sair: ")).strip()
+
+        # Adicionar horário de saída na instância da classe Estadia que está na lista estadias.
+        for estadia in reversed(_dados.estadias):
+            if estadia.placa == placa and getattr(estadia, "hora_saida", None) is None:
+                estadia.saida = hora
+                print(f"Saída registrada para {placa} às {hora.strftime('%d/%m/%Y %H:%M:%S')}")
+                return
+            
+        # Adicionar a vaga novamente à lista vagas
+
+        # Remover a vaga da instância da subclasse de Veiculo
+            
+        print("Não foi encontrada estadia em aberto para essa placa.")
+            
+    except TypeError as e:
+        print(f"Erro: {e}")
