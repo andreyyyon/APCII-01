@@ -1,3 +1,6 @@
+import _funcoes
+import _dados
+
 # While com menu de interação para definir cada ação
 
 opcao = -1
@@ -18,14 +21,14 @@ while opcao != 0:
     except:
         print("Digite um número inteiro equivalente a opção escolhida.")
     if opcao == 1:
-        registrar_entrada()
+        _funcoes.registrar_entrada(_dados.clientes)
     elif opcao == 2:
-        registrar_saida()
+        _funcoes.registrar_saida(_dados.clientes)
     elif opcao == 3:
-        listar_clientes()
+        _funcoes.listar_clientes()
     elif opcao == 4:
-        editar_veiculo()
+        _funcoes.editar_veiculo()
     elif opcao == 5:
-        consultar_estadias()
+        _funcoes.consultar_estadias()
     else:
         print("Opção inválida.")
