@@ -59,7 +59,18 @@ elif isinstance(cliente, Moto):
     print("-"*40)
     
 def editar_veiculos(clientes, veiculo):
-    pass
+    if not clientes:
+        print(f"Nenhum veículo cadastrado ainda.")
+
+    placa_buscar = input("Insira a placa do veículo que deseja editar"):
+
+    # Buscar o veículo
+    for cliente in clientes:
+        if cliente.placa == placa_buscar:
+            print(f"\nEditando o veículo: {clientes.modelo} - Placa: {cliente.placa}")
+
+        # Editar o modelo
+        nova_cor = input()
 
 def consultar_estadias(estadias):
     pass
