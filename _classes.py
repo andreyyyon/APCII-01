@@ -1,3 +1,5 @@
+import datetime
+
 """
     {Python} class Veiculo
     Classe principal para representar um veículo em um estacionamento.
@@ -162,6 +164,16 @@ class Estadia():
         
         if nome_propriedade == "placa" and len(valor) == 7:
             raise ValueError(f"A placa {valor} informada está inválido. Uma placa deve ter exatamente 7 caracteres (ex: ABC1D23).")
+    
+    # Método para registrar a entrada
+    def registrar_entrada(self):
+        agora = datetime.datetime.now()
+        self._entrada = agora.strftime('%d/%m/%Y %H:%M:%S')
+
+    # Método para registrar a saída
+    def registrar_saida(self):
+        agora = datetime.datetime.now()
+        self._saida = agora.strftime('%d/%m/%Y %H:%M:%S')
 
     @property
     def vaga(self):
@@ -169,6 +181,7 @@ class Estadia():
 
     @vaga.setter
     def vaga(self, vaga):
+            self._validProp("vaga", vaga)
             self._vaga = vaga
 
     @property
@@ -177,6 +190,7 @@ class Estadia():
 
     @placa.setter
     def placa(self, placa):
+            self._validProp("placa", placa)   
             self._placa = placa
 
     @property
@@ -185,12 +199,15 @@ class Estadia():
 
     @entrada.setter
     def entrada(self, entrada):
+            self._validProp("entrada", entrada)   
             self._entrada = entrada
     
     @property
     def saida(self):
         return self._saida
 
-    @entrada.setter
+    @saida.setter
     def saida(self, saida):
+            self._validProp("saida", saida)
             self._saida = saida
+
