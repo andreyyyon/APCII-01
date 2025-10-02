@@ -1,5 +1,3 @@
-# from _classes import Carro, Moto, cliente
-
 from datetime import datetime
 import pytz
 from _classes import Veiculo, Carro, Moto, Estadia
@@ -9,7 +7,7 @@ import platform
 
 # # Funções
 
-def registrar_entrada(clientes):
+def registrar_entrada():
     try:
         # Atributo hora/data
         fuso_brasilia = pytz.timezone("America/Sao_Paulo")
@@ -66,9 +64,9 @@ def registrar_entrada(clientes):
             # se já existir o cliente, registra a entrada
             if placa == clientesExistente.placa:
                 print("Cadastro já existente, fazendo o registro da entrada...")
-                estadiaNova = Estadia(placa, modelo, hora)
+                estadiaNova = Estadia(placa, modelo, hora, None)
                 _dados.estadias.append(estadiaNova)
-                return
+                pass
         
         # Caso não exista, vamos registrar o cliente e em seguida registrar a entrada.
         try:
@@ -81,14 +79,15 @@ def registrar_entrada(clientes):
         except ValueError as erro_validacao:
             print(f"Erro: {erro_validacao}.")
 
-        estadiaNova = Estadia(placa, modelo, hora)
+        estadiaNova = Estadia(placa, modelo, hora, None)
         _dados.estadias.append(estadiaNova)
+        print("Entrada registrada com sucesso.")
         return
     
     except TypeError as e:
         print(f"Erro: {e}")
     
-def registrar_saida(clientes):
+def registrar_saida():
     try:
         # Atributo hora/data
         fuso_brasilia = pytz.timezone("America/Sao_Paulo")
@@ -102,11 +101,16 @@ def registrar_saida(clientes):
             if estadia.placa == placa and getattr(estadia, "hora_saida", None) is None:
                 estadia.saida = hora
                 print(f"Saída registrada para {placa} às {hora.strftime('%d/%m/%Y %H:%M:%S')}")
-                return
-            
-        # Adicionar a vaga novamente à lista vagas
+                pass
 
-        # Remover a vaga da instância da subclasse de Veiculo
+        # Adicionar a vaga novamente à lista vagas
+        for cliente in _dados.clientes:
+            if placa == cliente.placa:
+                _dados.vagas.append(cliente.vaga)
+                # Remover a vaga da instância da subclasse de Veiculo
+                cliente.vaga = None
+                print("Saída registrada com sucesso.")
+                return 
             
         print("Não foi encontrada estadia em aberto para essa placa.")
     except TypeError as e:
@@ -136,11 +140,51 @@ elif isinstance(cliente, Moto):
     print("-"*40)
     
 def editar_veiculos(clientes, veiculo):
-    pass
+    if not clientes:
+        print(f"Nenhum veículo cadastrado ainda.")
+        return
+
+    placa_buscar = input("Digite a placa do veículo que deseja editar: ")
+
+    # Buscar o veículo
+    for cliente in clientes:
+        if cliente.placa == placa_buscar:
+            print(f"\nEditando o veículo: {cliente.modelo} - Placa: {cliente.placa}")
 
 def consultar_estadias(estadias):
     pass
-    
+   
+      alterado = False
+
+      # Editar o modelo
+      novo_modelo = input(f"Digite o novo modelo (modelo atual: {cliente.modelo}): ").strip()
+      print("Ou digite ENTER para manter o modelo atual.")
+      if novo_modelo:
+          cliente.modelo = novo_modelo
+          alterado = True
+
+      # Editar a cor
+      nova_cor = input(f"Digite a nova cor (cor atual: {cliente.cor}): ").strip()
+      print("Ou digite ENTER para manter a cor atual.")
+      if nova_cor:
+          cliente.cor = nova_cor
+          alterado = True
+
+      if alterado == True:
+          print("Veículo atualizado com sucesso!")
+      elif alterado == False:
+          print("Nenhuma alteração foi feita.")
+      return
+
+  print("Veículo não encontrado.")
+
+def consultar_estadias():
+    placa = str(input("Qual placa deseja consultar as estadias? "))
+    for estadia in _dados.estadias:
+            if estadia.placa == placa:
+                print(f"Vaga: {estadia.vaga}")
+                print(f"Data/hora de entrada: {estadia.entrada}")
+                print(f"Data/hora de saída: {estadia.saida}")
 
 def limpar_terminal():
     sistema_operacional = platform.system()
