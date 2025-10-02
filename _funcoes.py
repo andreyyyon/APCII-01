@@ -1,3 +1,5 @@
+from _classes import Carro, Moto, cliente
+
 from datetime import datetime
 import pytz
 from _classes import Veiculo, Carro, Moto, Estadia
@@ -105,6 +107,34 @@ def registrar_saida(clientes):
         # Remover a vaga da instância da subclasse de Veiculo
             
         print("Não foi encontrada estadia em aberto para essa placa.")
-            
-    except TypeError as e:
-        print(f"Erro: {e}")
+except TypeError as e:
+        print(f"Erro: {e}"
+
+# Função para mostrar todos os veículos cadastrados no sistema     
+def listar_clientes(clientes):
+    if not clientes:
+        print("Nenhum veículo cadastrado ainda.")
+        return
+    
+    print("Lista de clientes cadastrados")
+    for i, clientes in enumerate(clientes, start=1):
+        print(f"{i} - Placa: {clientes.placa}")
+        print(f"    - Modelo: {clientes.modelo}")
+        print(f"    - Cor: {clientes.cor}")
+        print(f"    - Vaga: {clientes.vaga}")
+
+# Verifica se o objeto pertence a classe correta
+if isinstance(cliente, Carro):
+    print(f"    - Tipo: Carro")
+    print(f"    - Tamanho: {cliente.tamanho}")
+
+elif isinstance(cliente, Moto):
+    print(f"   Tipo: Moto")
+    print(f"   Motor: {'Elétrica' if cliente.eletrica else 'Combustão'}")
+    print("-"*40)
+    
+def editar_veiculos(clientes, veiculo):
+    pass
+
+def consultar_estadias(estadias):
+    pass
