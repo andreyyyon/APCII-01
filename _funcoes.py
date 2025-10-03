@@ -81,11 +81,13 @@ def registrar_entrada():
                     if vagaPretendida[0] == "M":
                         vaga = vagaPretendida
                         _dados.vagas.remove(vagaPretendida)
+                        break
             elif tam_carro == "G":
                 for vagaPretendida in _dados.vagas:
                     if vagaPretendida[0] == "G":
                         vaga = vagaPretendida
                         _dados.vagas.remove(vagaPretendida)
+                        break
 
         elif tipo_veiculo == "M":
             if eletrica == True:
@@ -93,12 +95,14 @@ def registrar_entrada():
                     if vagaPretendida[0] == "E":
                         vaga = vagaPretendida
                         _dados.vagas.remove(vagaPretendida)
+                        break
 
             elif eletrica == False:
                 for vagaPretendida in _dados.vagas:
                     if vagaPretendida[0] == "C":
                         vaga = vagaPretendida
                         _dados.vagas.remove(vagaPretendida)
+                        break
         
         # Caso não exista, vamos registrar o cliente e em seguida registrar a entrada.
         try:
@@ -139,6 +143,7 @@ def registrar_saida():
         for cliente in _dados.clientes:
             if placa == cliente.placa:
                 _dados.vagas.append(cliente.vaga)
+                _dados.vagas.sort()
                 # Remover a vaga da instância da subclasse de Veiculo
                 cliente.vaga = None
                 print("Saída registrada com sucesso.")
@@ -157,7 +162,7 @@ def listar_clientes():
     
     print("Lista de clientes cadastrados")
     for i, cliente in enumerate(clientes, start=1):
-        print(f"{i} - Placa: {cliente.placa}")
+        print(f"{i}   - Placa: {cliente.placa}")
         print(f"    - Modelo: {cliente.modelo}")
         print(f"    - Cor: {cliente.cor}")
         print(f"    - Vaga: {cliente.vaga}")
