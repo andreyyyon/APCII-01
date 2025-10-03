@@ -128,7 +128,6 @@ class Estadia():
 
     @vaga.setter
     def vaga(self, vaga):
-            self._validProp("vaga", vaga)
             self._vaga = vaga
 
     @property
@@ -137,7 +136,6 @@ class Estadia():
 
     @placa.setter
     def placa(self, placa):
-            self._validProp("placa", placa)   
             self._placa = placa
 
     @property
@@ -146,7 +144,6 @@ class Estadia():
 
     @entrada.setter
     def entrada(self, entrada):
-            self._validProp("entrada", entrada)   
             self._entrada = entrada
     
     @property
@@ -155,6 +152,5 @@ class Estadia():
 
     @saida.setter
     def saida(self, saida):
-            self._validProp("saida", saida)
             self._saida = saida
 
