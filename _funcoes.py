@@ -15,6 +15,47 @@ def registrar_entrada():
 
         # Definindo os atributos da classe Veiculo
         placa = str(input("Digite a placa do veículo: ")) #id do cliente
+
+        # Verifico se o cliente ja existe na lista de clientes.
+        for clientesExistente in _dados.clientes:
+            # se já existir o cliente, registra a entrada
+            if placa == clientesExistente.placa:
+                if clientesExistente != None:
+                    print("Carro já está em uma estadia aberta")
+                    return
+                print("Cadastro já existente, fazendo o registro da entrada...")
+
+                if isinstance(clientesExistente, Carro):
+                    if clientesExistente.tamanho == "M":
+                        for vagaPretendida in _dados.vagas:
+                            if vagaPretendida[0] == "M":
+                                vaga = vagaPretendida
+                                _dados.vagas.remove(vagaPretendida)
+                    elif clientesExistente.tamanho == "G":
+                        for vagaPretendida in _dados.vagas:
+                            if vagaPretendida[0] == "G":
+                                vaga = vagaPretendida
+                                _dados.vagas.remove(vagaPretendida)
+
+                elif isinstance(clientesExistente, Moto):          
+                    if clientesExistente.eletrica == True:
+                        for vagaPretendida in _dados.vagas:
+                            if vagaPretendida[0] == "E":
+                                vaga = vagaPretendida
+                                _dados.vagas.remove(vagaPretendida)
+
+                    elif clientesExistente.eletrica == False:
+                        for vagaPretendida in _dados.vagas:
+                            if vagaPretendida[0] == "C":
+                                vaga = vagaPretendida
+                                _dados.vagas.remove(vagaPretendida)
+
+                print(f"Sua vaga selecionada foi {vaga}")
+                estadiaNova = Estadia(clientesExistente.vaga, placa, hora, None)
+                _dados.estadias.append(estadiaNova)
+                return
+            
+
         modelo = str(input("Qual o modelo do veículo? ")).strip()
         cor = str(input("Qual cor? ")).strip()
 
@@ -58,15 +99,6 @@ def registrar_entrada():
                     if vagaPretendida[0] == "C":
                         vaga = vagaPretendida
                         _dados.vagas.remove(vagaPretendida)
-                
-        # Verifico se o cliente ja existe na lista de clientes.
-        for clientesExistente in _dados.clientes:
-            # se já existir o cliente, registra a entrada
-            if placa == clientesExistente.placa:
-                print("Cadastro já existente, fazendo o registro da entrada...")
-                estadiaNova = Estadia(vaga, placa, hora, None)
-                _dados.estadias.append(estadiaNova)
-                pass
         
         # Caso não exista, vamos registrar o cliente e em seguida registrar a entrada.
         try:
@@ -184,6 +216,8 @@ def consultar_estadias():
             if estadia.placa == placa:
                 print(f"Vaga: {estadia.vaga}")
                 print(f"Data/hora de entrada: {estadia.entrada}")
+                if estadia.saida == None:
+                    print("Data/hora de saída: essa estadia ainda está aberta.")
                 print(f"Data/hora de saída: {estadia.saida}")
 
 def limpar_terminal():
