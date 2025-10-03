@@ -28,7 +28,7 @@ class Veiculo():
         if not valor or str(valor).strip() == "":
             raise ValueError(f"O campo '{nome_propriedade}' é obrigatório e não pode ser vazio.")
         
-        if nome_propriedade == "placa" and len(valor) == 7:
+        if nome_propriedade == "placa" and len(valor) != 7:
             raise ValueError(f"A placa {valor} informada está inválido. Uma placa deve ter exatamente 7 caracteres (ex: ABC1D23).")
 
     # Método para limpar a propriedade vaga
@@ -115,13 +115,7 @@ class Moto(Veiculo):
         super().__init__(placa, modelo, cor, vaga)
         
         self._validProp("eletrica", eletrica)
-        self._validEletrica("eletrica", eletrica)
         self._eletrica = eletrica
-
-    # Método generico para validação inicial das propriedades
-    def _validEletrica(self, nome_propriedade, valor):   
-        if nome_propriedade == "eletrica" and (valor != "E" and valor != "C"):
-            raise ValueError(f"O motor do veículo precisa ser 'E' ou 'C'.")
 
     @property
     def eletrica(self):
@@ -130,7 +124,6 @@ class Moto(Veiculo):
     @eletrica.setter
     def eletrica(self, eletrica):
         self._validProp("eletrica", eletrica)
-        self._validEletrica("eletrica", eletrica)
         self._eletrica = eletrica
 
 """
