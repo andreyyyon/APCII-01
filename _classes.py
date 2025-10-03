@@ -13,27 +13,10 @@ import datetime
 
 class Veiculo():
     def __init__(self, placa, modelo, cor, vaga):
-        self._validProp("placa", placa)
-        self._validProp("modelo", modelo)
-        self._validProp("cor", cor)
-        self._validProp("vaga", vaga)
-
         self._placa = placa
         self._modelo = modelo
         self._cor = cor
         self._vaga = vaga
-
-    # Método generico para validação inicial das propriedades
-    def _validProp(self, nome_propriedade, valor):
-        if not valor or str(valor).strip() == "":
-            raise ValueError(f"O campo '{nome_propriedade}' é obrigatório e não pode ser vazio.")
-        
-        if nome_propriedade == "placa" and len(valor) != 7:
-            raise ValueError(f"A placa {valor} informada está inválido. Uma placa deve ter exatamente 7 caracteres (ex: ABC1D23).")
-
-    # Método para limpar a propriedade vaga
-    def limpaVaga(self):
-        self._vaga = ""
 
     @property
     def placa(self):
@@ -41,7 +24,6 @@ class Veiculo():
 
     @placa.setter
     def placa(self, placa):
-            self._validProp("placa", placa)
             self._placa = placa
 
     @property
@@ -50,7 +32,6 @@ class Veiculo():
 
     @modelo.setter
     def modelo(self, modelo):
-            self._validProp("modelo", modelo)
             self._modelo = modelo
 
     @property
@@ -59,7 +40,6 @@ class Veiculo():
 
     @cor.setter
     def cor(self, cor):
-            self._validProp("cor", cor)
             self._cor = cor
 
     @property
@@ -82,15 +62,7 @@ class Veiculo():
 class Carro(Veiculo):    
     def __init__(self, placa, modelo, cor, vaga, tamanho):
         super().__init__(placa, modelo, cor, vaga)
-        
-        self._validProp("tamanho", tamanho)
-        self._validTamanho("tamanho", tamanho)
         self._tamanho = tamanho
-
-    # Método generico para validação de tamanho
-    def _validTamanho(self, nome_propriedade, valor):   
-        if nome_propriedade == "tamanho" and (valor != "M" and valor != "G"):
-            raise ValueError(f"O porte do veículo precisa ser 'M' ou 'G'.")
 
     @property
     def tamanho(self):
@@ -98,8 +70,6 @@ class Carro(Veiculo):
 
     @tamanho.setter
     def tamanho(self, novo_tamanho):
-        self._validProp("tamanho", novo_tamanho)
-        self._validTamanho("tamanho", novo_tamanho)
         self._tamanho = novo_tamanho
 
 """
@@ -114,7 +84,6 @@ class Moto(Veiculo):
     def __init__(self, placa, modelo, cor, vaga, eletrica):
         super().__init__(placa, modelo, cor, vaga)
         
-        self._validProp("eletrica", eletrica)
         self._eletrica = eletrica
 
     @property
@@ -123,7 +92,6 @@ class Moto(Veiculo):
 
     @eletrica.setter
     def eletrica(self, eletrica):
-        self._validProp("eletrica", eletrica)
         self._eletrica = eletrica
 
 """
@@ -139,22 +107,10 @@ class Moto(Veiculo):
 
 class Estadia():
     def __init__(self, vaga, placa, entrada, saida):
-        self._validProp("vaga", vaga)        
-        self._validProp("placa", placa)        
-        self._validProp("entrada", entrada)        
-
         self._vaga = vaga
         self._placa = placa
         self._entrada = entrada
         self._saida = saida
-    
-    # Método generico para validação inicial das propriedades
-    def _validProp(self, nome_propriedade, valor):
-        if not valor or str(valor).strip() == "":
-            raise ValueError(f"O campo '{nome_propriedade}' é obrigatório e não pode ser vazio.")
-        
-        if nome_propriedade == "placa" and len(valor) == 7:
-            raise ValueError(f"A placa {valor} informada está inválido. Uma placa deve ter exatamente 7 caracteres (ex: ABC1D23).")
     
     # Método para registrar a entrada
     def registrar_entrada(self):

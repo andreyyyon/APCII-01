@@ -218,7 +218,8 @@ def consultar_estadias():
                 print(f"Data/hora de entrada: {estadia.entrada}")
                 if estadia.saida == None:
                     print("Data/hora de saída: essa estadia ainda está aberta.")
-                print(f"Data/hora de saída: {estadia.saida}")
+                else:
+                    print(f"Data/hora de saída: {estadia.saida}")
 
 def limpar_terminal():
     sistema_operacional = platform.system()
