@@ -188,32 +188,33 @@ def editar_veiculo():
     # Buscar o veículo
     for cliente in  _dados.clientes:
         if cliente.placa == placa_buscar:
-            print(f"\nEditando o veículo: {cliente.modelo} - Placa: {cliente.placa}")
+            print(f"\nEditando o veículo: {cliente.modelo} - Placa: {cliente.placa}\n")
             clienteTemp = cliente
 
-    alterado = False
+            alterado = False
 
-    # Editar o modelo
-    novo_modelo = input(f"Digite o novo modelo (modelo atual: {clienteTemp.modelo}): \nOu digite ENTER para manter o modelo atual.").strip()
+            # Editar o modelo
+            novo_modelo = input(f"Digite o novo modelo (modelo atual: {clienteTemp.modelo})\nOu digite ENTER para manter o modelo atual: ").strip()
    
-    if novo_modelo:
-        clienteTemp.modelo = novo_modelo
-        alterado = True
+            if novo_modelo:
+                clienteTemp.modelo = novo_modelo
+                alterado = True
 
-    # Editar a cor
-    nova_cor = input(f"Digite a nova cor (cor atual: {clienteTemp.cor}): \nOu digite ENTER para manter a cor atual.").strip()
+            # Editar a cor
+            nova_cor = input(f"\nDigite a nova cor (cor atual: {clienteTemp.cor})\nOu digite ENTER para manter a cor atual: ").strip()
  
-    if nova_cor:
-        clienteTemp.cor = nova_cor
-        alterado = True
+            if nova_cor:
+                clienteTemp.cor = nova_cor
+                alterado = True
 
-    if alterado == True:
-        print("Veículo atualizado com sucesso!")
-    elif alterado == False:
-        print("Nenhuma alteração foi feita.")
-        return
+            if alterado == True:
+                print("\nVeículo atualizado com sucesso!")
+            elif alterado == False:
+                print("\nNenhuma alteração foi feita.")
 
-    print("Veículo não encontrado.")
+            return
+
+    print("\nVeículo não encontrado.")
 
 def consultar_estadias():
     placa = str(input("Qual placa deseja consultar as estadias? "))
