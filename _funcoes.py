@@ -194,15 +194,15 @@ def editar_veiculo():
     alterado = False
 
     # Editar o modelo
-    novo_modelo = input(f"Digite o novo modelo (modelo atual: {clienteTemp.modelo}): ").strip()
-    print("Ou digite ENTER para manter o modelo atual.")
+    novo_modelo = input(f"Digite o novo modelo (modelo atual: {clienteTemp.modelo}): \nOu digite ENTER para manter o modelo atual.").strip()
+   
     if novo_modelo:
         clienteTemp.modelo = novo_modelo
         alterado = True
 
     # Editar a cor
-    nova_cor = input(f"Digite a nova cor (cor atual: {clienteTemp.cor}): ").strip()
-    print("Ou digite ENTER para manter a cor atual.")
+    nova_cor = input(f"Digite a nova cor (cor atual: {clienteTemp.cor}): \nOu digite ENTER para manter a cor atual.").strip()
+ 
     if nova_cor:
         clienteTemp.cor = nova_cor
         alterado = True
